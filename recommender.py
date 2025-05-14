@@ -6,13 +6,18 @@ import ast  # um Zeichenketten in Listen (z.B. aus CSV) umzuwandeln
 import numpy as np  # für numerische Operationen (z.B. Matrizen)
 from collections import Counter  # zählt wie oft ein Wert in einer Liste vorkommt
 import requests
+import streamlit as st
 
 # Modell zur Umwandlung von Texten in Vektoren
 from sklearn.metrics.pairwise import cosine_similarity  # misst Ähnlichkeit zwischen Vektoren
 from sentence_transformers import SentenceTransformer  # Modell für sogenannte "Sentence Embeddings"
 
 # Ein kleines, aber effektives Modell zur Umwandlung von Texten in Zahlenvektoren
-model = SentenceTransformer("paraphrase-multilingual-MiniLM-L12-v2")
+@st.cache_resource
+def load_model():
+    return SentenceTransformer("paraphrase-multilingual-MiniLM-L12-v2")
+
+model = load_model()
 
 # Datensätze laden
 books_df = pd.read_csv("./00_data/filtered_books.csv")  # enthält Buchdaten (Titel, Autor, Beschreibung usw.)'isbn13
