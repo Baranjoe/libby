@@ -9,6 +9,7 @@ import json  # Für das Umwandeln von Funktionsargumenten und Ergebnissen
 from openai import OpenAI  # Die OpenAI-Schnittstelle zum Kommunizieren mit GPT-Modellen
 from tools import tools  # Liste der verfügbaren „Werkzeuge“, also Funktionen, die GPT aufrufen darf
 from dotenv import load_dotenv
+import streamlit as st
 from recommender import (
     find_similar_books_by_title,
     recommend_by_shared_reads,
@@ -22,8 +23,8 @@ import os
 
 
 # Verbindung zum OpenAI-Client herstellen
-load_dotenv()
-client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
+# load_dotenv()
+client = OpenAI(api_key=st.secrets["openai_api_key"])
 
 # --------------------------------------
 # Gedächtnisobjekt für den Chatverlauf
