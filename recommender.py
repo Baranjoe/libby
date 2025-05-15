@@ -106,7 +106,7 @@ def find_similar_books_by_title(title: str, top_n: int = 5):
         top_idxs = [i for i in top_idxs if i != idx][:top_n]
         print(f"✅ Top indices: {top_idxs}")
 
-        results = books_df.iloc[top_idxs][["isbn13", "medium_id", "title", "author_list"]].copy()
+        results = books_df.iloc[top_idxs][["isbn13", "medium_id", "title", "description", "author_list"]].copy()
         results["similarity_score"] = similarities[top_idxs]
         print(f"✅ Results found: {results.shape[0]} books")
         return results.to_dict(orient="records")
