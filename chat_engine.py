@@ -97,7 +97,7 @@ def handle_user_message(user_input: str, memory: ChatMemory):
     
                 4. **At the end of the message**, output **only** the `medium_ids` of the books you recommend as a plain Python list, like this: `[12345, 67896]`
                    - **Do NOT** add any labels, text, or explanation before or after the list.
-                   - Only include the books you mentioned in your reply as a recommendation in this list.
+                   - Only include the books you mentioned in your reply as a recommendation in this list. The book the user mentioned should not be in the list.
                    - Just output the list by itself on the final line.
             """
             },
