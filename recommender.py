@@ -86,7 +86,7 @@ def is_book_in_library(title: str):
 # --------------------------
 
 # Findet Bücher, die inhaltlich einem gegebenen Titel ähneln
-def find_similar_books_by_title(title: str, top_n: int = 5):
+def find_similar_books_by_title(title: str, top_n: int = 8):
     print(f"🔎 Searching similar books for title: {title}")
     try:
         idx = get_book_index_by_title(title)
@@ -104,6 +104,7 @@ def find_similar_books_by_title(title: str, top_n: int = 5):
         # Top-N ähnliche (ohne sich selbst)
         top_idxs = similarities.argsort()[-(top_n + 1):][::-1]
         top_idxs = [i for i in top_idxs if i != idx][:top_n]
+        top_idxs = np.random.choice(top_idxs, 5, replace=False)
         print(f"✅ Top indices: {top_idxs}")
 
         results = books_df.iloc[top_idxs][["isbn13", "medium_id", "title", "description", "author_list"]].copy()
