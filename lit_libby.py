@@ -107,6 +107,14 @@ with title_col:
     st.markdown("<h1 style='color: #0000ee;'>Libby - Deine virtuelle Bibliothekarin</h1>", unsafe_allow_html=True)
 
 # --------------------------
+# Chat löschen Button
+# --------------------------
+if st.button("🗑️ Chat löschen"):
+    st.session_state.chat_history = []
+    st.session_state.memory = ChatMemory()
+    st.rerun()
+
+# --------------------------
 # Chat + Karten
 # --------------------------
 if "chat_history" not in st.session_state:
